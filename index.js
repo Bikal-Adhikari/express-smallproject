@@ -11,6 +11,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+function passwordCheck(req, res, next) {
+  const password = req.body["password"];
+  if (password === "ILoveProgramming") {
+    userIsAuthorised = true;
+  }
+  next();
+}
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
